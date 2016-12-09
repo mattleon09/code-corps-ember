@@ -3,6 +3,7 @@ import FriendlyError from 'code-corps-ember/utils/friendly-error';
 import { isValidationError } from 'code-corps-ember/utils/error-utils';
 
 const {
+  assign,
   Controller,
   get,
   inject: { service },
@@ -94,6 +95,12 @@ export default Controller.extend({
       donationGoal.save()
                   .then((donationGoal) => this._onDoneSaving(donationGoal))
                   .catch((response) => this._onFailedSaving(response));
+    },
+
+    onAccountInformationSubmitted(organization, accountInformation) {
+      assign(accountInformation, { organization });
+      get(this, 'store').createRecord('stripe-connect-account', accountInformation)
+                        .save();
     }
   },
 
