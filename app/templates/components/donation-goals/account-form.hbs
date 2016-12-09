@@ -72,7 +72,9 @@
   <div class="input-group">
     <label for="state">State</label>
     {{! TODO: Make a proper select dropdown}}
-    {{input type="text" name="state" value=state disabled=true}}
+    <select disabled=true value=state name="state">
+      <option value="CA">California</option>
+    </select>
   </div>
   <div class="input-group">
     <label for="zip">ZIP</label>
@@ -81,7 +83,9 @@
   <div class="input-group">
     <label for="country">Country</label>
     {{! TODO: Make a proper select dropdown}}
-    {{input type="text" name="country" value="United States" disabled=true}}
+    <select disabled=true value=country name="country">
+      <option value="US">United States</option>
+    </select>
   </div>
 </div>
 <div class="input-group">

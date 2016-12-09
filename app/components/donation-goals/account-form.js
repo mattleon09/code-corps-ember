@@ -8,7 +8,7 @@ export default Component.extend({
   tagName: 'form',
 
   state: 'CA',
-  country: 'United States',
+  country: 'US',
 
   // Preset values for testing
   email: 'some@mail.com',
