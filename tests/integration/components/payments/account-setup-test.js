@@ -3,13 +3,13 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import PageObject from 'ember-cli-page-object';
 
-import accountFormComponent from '../../../pages/components/payments/account-form';
+import accountSetupComponent from '../../../pages/components/payments/account-setup';
 
 const {
   K
 } = Ember;
 
-let page = PageObject.create(accountFormComponent);
+let page = PageObject.create(accountSetupComponent);
 
 function setHandlers(context, {
   onRecipientInformationSubmittedHandler = K,
@@ -21,7 +21,7 @@ function setHandlers(context, {
   });
 }
 
-moduleForComponent('payments/account-form', 'Integration | Component | payments/account form', {
+moduleForComponent('payments/account-setup', 'Integration | Component | payments/account setup', {
   integration: true,
   beforeEach() {
     setHandlers(this);
@@ -34,11 +34,11 @@ moduleForComponent('payments/account-form', 'Integration | Component | payments/
 
 test('it renders', function(assert) {
   page.render(hbs`
-    {{payments/account-form
+    {{payments/account-setup
       onRecipientInformationSubmitted=onRecipientInformationSubmittedHandler
       onBankAccountInformationSubmitted=onBankAccountInformationSubmittedHandler}}
   `);
-  assert.equal(this.$('.account-form').length, 1, 'Component renders');
+  assert.equal(this.$('.account-setup').length, 1, 'Component renders');
 });
 
 // TODO: Write tests, remove 'it renders' test
@@ -46,23 +46,23 @@ test('it renders', function(assert) {
 // test('it renders correctly for individual', function(assert) {
 //   assert.expect(0);
 
-//   page.render(hbs`{{payments/account-form accountInformationSubmitted=submitHandler}}`);
+//   page.render(hbs`{{payments/account-setup accountInformationSubmitted=submitHandler}}`);
 // });
 
 // test('it renders correctly for business', function(assert) {
 //   assert.expect(0);
 
-//   page.render(hbs`{{payments/account-form accountInformationSubmitted=submitHandler}}`);
+//   page.render(hbs`{{payments/account-setup accountInformationSubmitted=submitHandler}}`);
 // });
 
 // test('it submits correctly for individual', function(assert) {
 //   assert.expect(0);
 
-//   page.render(hbs`{{payments/account-form accountInformationSubmitted=submitHandler}}`);
+//   page.render(hbs`{{payments/account-setup accountInformationSubmitted=submitHandler}}`);
 // });
 
 // test('it submits correctly for business', function(assert) {
 //   assert.expect(0);
 
-//   page.render(hbs`{{payments/account-form accountInformationSubmitted=submitHandler}}`);
+//   page.render(hbs`{{payments/account-setup accountInformationSubmitted=submitHandler}}`);
 // });

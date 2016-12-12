@@ -5,7 +5,7 @@ const {
 } = Ember;
 
 export default Component.extend({
-  classNames: ['account-form'],
+  classNames: ['account-setup'],
 
   // Preset values for testing
   email: 'some@mail.com',
