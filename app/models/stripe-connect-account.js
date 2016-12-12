@@ -36,8 +36,5 @@ export default Model.extend({
   insertedAt: attr(),
   updatedAt: attr(),
 
-  // Virtual attribute; write-only
-  accessCode: attr(),
-
   organization: belongsTo('organization', { async: true })
 });

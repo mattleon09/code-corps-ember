@@ -3,11 +3,8 @@ const {
   Controller,
   get,
   inject: { service },
-  merge,
-  set
+  merge
 } = Ember;
-
-const PROBLEM_SAVING_DONATION_GOAL = 'There was a problem saving your donation goal. Please try again.';
 
 export default Controller.extend({
   store: service(),

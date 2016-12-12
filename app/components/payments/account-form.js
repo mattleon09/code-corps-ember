@@ -1,10 +1,12 @@
 import Ember from 'ember';
 
 const {
-  Component, get, merge, set
+  Component,
+  merge
 } = Ember;
 
 export default Component.extend({
+  classNames: ['account-form'],
 
   // Preset values for testing
   email: 'some@mail.com',

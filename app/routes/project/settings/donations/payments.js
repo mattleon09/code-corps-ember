@@ -2,9 +2,7 @@ import Ember from 'ember';
 import { CanMixin } from 'ember-can';
 
 const {
-  get,
-  Route,
-  RSVP
+  Route
 } = Ember;
 
 /**

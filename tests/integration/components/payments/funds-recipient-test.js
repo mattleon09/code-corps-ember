@@ -1,25 +1,26 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import PageObject from 'ember-cli-page-object';
+
+import fundsRecipientComponent from '../../../pages/components/payments/funds-recipient';
+
+let page = PageObject.create(fundsRecipientComponent);
 
 moduleForComponent('payments/funds-recipient', 'Integration | Component | payments/funds recipient', {
-  integration: true
+  integration: true,
+  beforeEach() {
+    page.setContext(this);
+  },
+  afterEach() {
+    page.removeContext();
+  }
 });
 
 test('it renders', function(assert) {
-
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{payments/funds-recipient}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#payments/funds-recipient}}
-      template block text
-    {{/payments/funds-recipient}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  page.render(hbs`{{payments/funds-recipient}}`);
+  assert.equal(this.$('.funds-recipient').length, 1, 'Component renders');
 });
+
+// TODO: Write tests, remove 'it renders' test
+
+// test('it sends out recipient info parameters on submit')

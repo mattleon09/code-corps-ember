@@ -6,6 +6,7 @@ const {
 
 export default Component.extend({
   tagName: 'form',
+  classNames: ['funds-recipient'],
 
   init() {
     this.setProperties(get(this, 'fundsRecipient'));

@@ -36,34 +36,6 @@ test('it redirects to project list page if user is not allowed to manage donatio
   });
 });
 
-test('it allows refreshing account if account does not have charges enabled yet', function(assert) {
-  assert.expect(3);
-
-  let project = createProjectWithSluggedRoute();
-  let { organization } = project;
-  let account = organization.createStripeConnectAccount({ canAcceptDonations: false });
-
-  authenticateAsMemberOfRole(this.application, server, organization, 'owner');
-
-  projectSettingsDonationsPage.visit({ organization: organization.slug, project: project.slug });
-
-  andThen(() => {
-    server.get('stripe-connect-accounts/:id', function() {
-      assert.ok(true, 'Refresh was called');
-      account.canAcceptDonations = true;
-
-      return account;
-    });
-
-    assert.equal(projectSettingsDonationsPage.editedDonationGoals().count, 0, 'Form is not visible');
-    projectSettingsDonationsPage.clickRefreshAccount();
-  });
-
-  andThen(() => {
-    assert.equal(projectSettingsDonationsPage.editedDonationGoals().count, 1, 'Form is now visible');
-  });
-});
-
 test('it renders existing donation goals', function(assert) {
   assert.expect(1);
 

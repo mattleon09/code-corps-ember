@@ -11,7 +11,7 @@ import donationProgress from 'code-corps-ember/tests/pages/components/donations/
 import errorFormatter from 'code-corps-ember/tests/pages/components/error-formatter';
 
 export default create({
-  visit: visitable(':organization/:project/settings/donations'),
+  visit: visitable(':organization/:project/settings/donations/goals'),
 
   donationProgress,
 
