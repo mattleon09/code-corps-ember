@@ -1,8 +1,7 @@
 import Ember from 'ember';
 
 const {
-  Component,
-  merge
+  Component
 } = Ember;
 
 export default Component.extend({
@@ -33,10 +32,5 @@ export default Component.extend({
     country: 'US',
     zip: '10000',
     ssnLast4: '1234'
-  },
-
-  onRecipientInformationSubmitted(email, fundsRecipient) {
-    let accountInformation = merge(fundsRecipient, { email });
-    this.sendAction('accountInformationSubmitted', accountInformation);
   }
 });

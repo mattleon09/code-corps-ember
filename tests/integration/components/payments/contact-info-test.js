@@ -21,3 +21,5 @@ test('it renders email', function(assert) {
   page.render(hbs`{{payments/contact-info email='test@example.com'}}`);
   assert.equal(page.email, 'test@example.com', 'The email is rendered');
 });
+
+// TODO: Write tests, remove 'it renders' test

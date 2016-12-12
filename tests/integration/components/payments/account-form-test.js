@@ -11,14 +11,20 @@ const {
 
 let page = PageObject.create(accountFormComponent);
 
-function setHandler(context, submitHandler = K) {
-  context.set('submitHandler', submitHandler);
+function setHandlers(context, {
+  onRecipientInformationSubmittedHandler = K,
+  onBankAccountInformationSubmittedHandler = K
+} = {}) {
+  context.setProperties({
+    onRecipientInformationSubmittedHandler,
+    onBankAccountInformationSubmittedHandler
+  });
 }
 
 moduleForComponent('payments/account-form', 'Integration | Component | payments/account form', {
   integration: true,
   beforeEach() {
-    setHandler(this);
+    setHandlers(this);
     page.setContext(this);
   },
   afterEach() {
@@ -27,7 +33,11 @@ moduleForComponent('payments/account-form', 'Integration | Component | payments/
 });
 
 test('it renders', function(assert) {
-  page.render(hbs`{{payments/account-form accountInformationSubmitted=submitHandler}}`);
+  page.render(hbs`
+    {{payments/account-form
+      onRecipientInformationSubmitted=onRecipientInformationSubmittedHandler
+      onBankAccountInformationSubmitted=onBankAccountInformationSubmittedHandler}}
+  `);
   assert.equal(this.$('.account-form').length, 1, 'Component renders');
 });
 
