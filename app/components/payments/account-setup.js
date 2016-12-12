@@ -7,9 +7,10 @@ const {
 export default Component.extend({
   classNames: ['account-setup'],
 
-  // Preset values for testing
-  email: 'some@mail.com',
+  // set by binding
+  email: null,
 
+  // Preset values for testing
   fundsRecipient: {
     recipientType: 'company',
     firstName: 'John',

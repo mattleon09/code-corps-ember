@@ -1,5 +1,6 @@
 import Ember from 'ember';
 const {
+  computed: { alias },
   Controller,
   get,
   inject: { service },
@@ -7,7 +8,10 @@ const {
 } = Ember;
 
 export default Controller.extend({
+  currentUser: service(),
   store: service(),
+
+  user: alias('currentUser.user'),
 
   actions: {
     onRecipientInformationSubmitted(organization, email, recipientInformation) {
