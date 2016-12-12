@@ -6,7 +6,6 @@ const {
   Controller,
   get,
   inject: { service },
-  merge,
   set
 } = Ember;
 
@@ -95,12 +94,6 @@ export default Controller.extend({
       donationGoal.save()
                   .then((donationGoal) => this._onDoneSaving(donationGoal))
                   .catch((response) => this._onFailedSaving(response));
-    },
-
-    onAccountInformationSubmitted(organization, accountInformation) {
-      let accountParams = merge(accountInformation, { organization });
-      get(this, 'store').createRecord('stripe-connect-account', accountParams)
-                        .save();
     }
   },
 
