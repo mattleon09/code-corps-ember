@@ -11,6 +11,9 @@ export default Factory.extend({
   number(i) {
     return i + 1;
   },
+  position(i) {
+    return i + 1;
+  },
   status: 'open',
   taskType: faker.list.cycle('task', 'idea', 'issue'),
   title() {
