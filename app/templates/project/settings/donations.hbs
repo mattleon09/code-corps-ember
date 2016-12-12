@@ -19,7 +19,9 @@
       </button>
     {{/if}}
   {{else}}
-    {{payments/account-form accountInformationSubmitted=(action 'onAccountInformationSubmitted' project.organization)}}
+    {{payments/account-form
+      organizationName=project.organization.name
+      accountInformationSubmitted=(action 'onAccountInformationSubmitted' project.organization)}}
   {{/if}}
   {{#if error}}
     {{error-formatter error=error}}
