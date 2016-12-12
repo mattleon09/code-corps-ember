@@ -19,9 +19,7 @@
       </button>
     {{/if}}
   {{else}}
-    {{#if stripeAuth}}
-      {{donation-goals/account-form accountInformationSubmitted=(action 'onAccountInformationSubmitted' project.organization)}}
-    {{/if}}
+    {{payments/account-form accountInformationSubmitted=(action 'onAccountInformationSubmitted' project.organization)}}
   {{/if}}
   {{#if error}}
     {{error-formatter error=error}}

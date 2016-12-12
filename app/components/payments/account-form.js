@@ -39,7 +39,7 @@ export default Component.extend({
 
   actions: {
     setBusinessType(value) {
-      set(this, 'businessType', value)
+      set(this, 'businessType', value);
     },
 
     setDob(value) {

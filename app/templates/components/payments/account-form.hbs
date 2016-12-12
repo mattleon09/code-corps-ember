@@ -16,7 +16,6 @@
 {{! business info }}
 {{! if business only, can remove the #if}}
 {{#if (eq recipientType 'company')}}
-  <hr/>
   <div class="input-group">
     <label for="business-type">Business Type</label>
     <select onchange={{action "setBusinessType" value="target.value"}} name="business-type" value='businessType'>
@@ -39,7 +38,6 @@
 
 
 {{!identity}}
-<hr/>
 
 <div class="input-group">
   <label for="first-name">First Name</label>
@@ -56,7 +54,6 @@
   </label>
 </div>
 <div class="input-group">
-  <hr/>
   <div class="input-group">
     <label for="address-1">Address 1</label>
     {{input type="text" name="address-1" value=address1}}
@@ -92,7 +89,5 @@
   <label for="ssn-last4">SSN Last 4</label>
   {{input type="text" name="ssn-last4" value=ssnLast4}}
 </div>
-
-<hr/>
 
 <input type="submit" value="Submit information" {{action "submit"}}/>
