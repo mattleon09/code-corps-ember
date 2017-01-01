@@ -3,10 +3,7 @@ import { testForAttributes } from 'code-corps-ember/tests/helpers/attributes';
 import { testForBelongsTo } from 'code-corps-ember/tests/helpers/relationship';
 
 moduleForModel('stripe-connect-account', 'Unit | Model | stripe connect account', {
-  // Specify the other units that are required for this test.
-  needs: [
-    'model:organization'
-  ]
+  needs: ['model:organization']
 });
 
 test('it exists', function(assert) {
@@ -14,5 +11,33 @@ test('it exists', function(assert) {
   assert.ok(!!model);
 });
 
-testForAttributes('stripe-connect-account', ['accessCode', 'businessName', 'businessUrl', 'canAcceptDonations', 'chargesEnabled', 'displayName', 'email', 'idFromStripe', 'insertedAt', 'updatedAt']);
+testForAttributes('stripe-connect-account', [
+  'address1',
+  'address2',
+  'businessEin',
+  'businessName',
+  'businessType',
+  'canAcceptDonations',
+  'chargesEnabled',
+  'city',
+  'country',
+  'displayName',
+  'dobDay',
+  'dobMonth',
+  'dobYear',
+  'email',
+  'firstName',
+  'identityDocumentId',
+  'idFromStripe',
+  'insertedAt',
+  'lastName',
+  'recipientStatus',
+  'recipientType',
+  'ssnLast4',
+  'state',
+  'updatedAt',
+  'verificationDocumentStatus',
+  'verificationFieldsNeeded',
+  'zip'
+]);
 testForBelongsTo('stripe-connect-account', 'organization');

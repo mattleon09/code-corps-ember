@@ -236,9 +236,45 @@ export default function(server) {
     username: 'random'
   });
 
-  server.createList('task', 10, { project, taskType: 'idea', user: owner });
-  server.createList('task', 10, { project, taskType: 'issue', user: owner });
-  server.createList('task', 10, { project, taskType: 'task', user: owner });
+  let inboxTaskList = server.create('task-list', {
+    name: 'Inbox',
+    position: 0,
+    project
+  });
+
+  let backlogTaskList = server.create('task-list', {
+    name: 'Backlog',
+    position: 1,
+    project
+  });
+
+  let inProgressTaskList = server.create('task-list', {
+    name: 'In Progress',
+    position: 2,
+    project
+  });
+
+  let doneTaskList = server.create('task-list', {
+    name: 'Done',
+    position: 3,
+    project
+  });
+
+  server.createList('task', 2, { project, taskList: inboxTaskList, taskType: 'idea', user: owner });
+  server.createList('task', 1, { project, taskList: inboxTaskList, taskType: 'issue', user: owner });
+  server.createList('task', 1, { project, taskList: inboxTaskList, taskType: 'task', user: owner });
+
+  server.createList('task', 1, { project, taskList: backlogTaskList, taskType: 'idea', user: owner });
+  server.createList('task', 1, { project, taskList: backlogTaskList, taskType: 'issue', user: owner });
+  server.createList('task', 2, { project, taskList: backlogTaskList, taskType: 'task', user: owner });
+
+  server.createList('task', 1, { project, taskList: inProgressTaskList, taskType: 'idea', user: owner });
+  server.createList('task', 3, { project, taskList: inProgressTaskList, taskType: 'issue', user: owner });
+  server.createList('task', 2, { project, taskList: inProgressTaskList, taskType: 'task', user: owner });
+
+  server.createList('task', 1, { project, taskList: doneTaskList, taskType: 'idea', user: owner });
+  server.createList('task', 1, { project, taskList: doneTaskList, taskType: 'issue', user: owner });
+  server.createList('task', 1, { project, taskList: doneTaskList, taskType: 'task', user: owner });
 
   let skillTitles = ['CSS', 'Ember.js', 'HTML'];
 
@@ -253,7 +289,12 @@ export default function(server) {
     server.create('project-category', { category, project });
   });
 
-  organization.createStripeConnectAccount();
+  let stripeConnectAccount = server.create('stripe-connect-account', {
+    organization,
+    recipientStatus: 'required'
+  });
+  organization.stripeConnectAccount = stripeConnectAccount;
+  organization.save();
 
   project.createStripeConnectPlan();
 

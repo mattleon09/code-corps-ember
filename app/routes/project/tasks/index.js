@@ -2,41 +2,32 @@ import Ember from 'ember';
 
 const {
   get,
-  merge,
-  Route,
-  RSVP
+  inject: { service },
+  Route
  } = Ember;
 
 export default Route.extend({
-  queryParams: {
-    page: { refreshModel: true, scope: 'controller' },
-    taskType: { refreshModel: true, scope: 'controller' },
-    status: { refreshModel: true, scope: 'controller' }
+  projectTaskBoard: service(),
+
+  model() {
+    return this.modelFor('project');
   },
 
-  model(params) {
-    let project = this.modelFor('project');
-
-    let projectId = project.get('id');
-    let fullParams = merge(params, { projectId });
-
-    let tasks =  get(this, 'store').query('task', fullParams);
-
-    return RSVP.hash({ project, tasks });
+  setupController(controller, project) {
+    controller.setProperties({ project });
   },
 
-  setupController(controller, { project, tasks }) {
-    controller.setProperties({ project, tasks });
-  },
+  actions: {
+    didTransition() {
+      this._super(...arguments);
+      get(this, 'projectTaskBoard').activate();
+      return true;
+    },
 
-  // there is a semi-known ember bug, where a query parameter with an initial value not set to null
-  // and then later set to null, will have its value serialized as "null" (string)
-  // we fix this here
-  deserializeQueryParam(value, urlKey, defaultValueType) {
-    if (urlKey === 'status' && value === 'null') {
-      return null;
-    } else {
-      return this._super(value, urlKey, defaultValueType);
+    willTransition() {
+      this._super(...arguments);
+      get(this, 'projectTaskBoard').deactivate();
+      return true;
     }
   }
 });

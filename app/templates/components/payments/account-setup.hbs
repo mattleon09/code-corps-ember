@@ -1,0 +1,22 @@
+<h3>Create a Stripe account for {{organizationName}}</h3>
+
+{{#unless stripeConnectAccount}}
+  {{payments/create-account
+    isBusy=isBusy
+    onCreateStripeConnectAccount=(action onCreateStripeConnectAccount)
+  }}
+{{/unless}}
+
+{{payments/funds-recipient
+  isBusy=isBusy
+  onRecipientDetailsSubmitted=(action onRecipientDetailsSubmitted)
+  onVerificationDocumentSubmitted=(action onVerificationDocumentSubmitted)
+  onPersonalIdNumberSubmitted=(action onPersonalIdNumberSubmitted)
+  stripeConnectAccount=stripeConnectAccount
+}}
+
+{{payments/bank-account
+  isBusy=isBusy
+  stripeConnectAccount=stripeConnectAccount
+  submit=(action onBankAccountInformationSubmitted)
+}}
